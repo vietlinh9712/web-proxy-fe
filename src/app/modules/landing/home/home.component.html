@@ -1,0 +1,203 @@
+<mat-toolbar class="fixed z-30 h-[80px]" style="background: none">
+    <div class="container mx-auto">
+        <div class="flex text-xxl w-full align-center justify-between mx-10">
+            <div>logo</div>
+            <div class="text-[26px] flex">
+                <button
+                    *ngFor="let header of headers"
+                    class="fuse-mat-button-large text-[18px] text-white mr-4"
+                    mat-button
+                >
+                    {{header.title}}
+                </button>
+                <div class="ml-15">
+                    <button
+                        *ngFor="let header of authHeaders"
+                        class="fuse-mat-button-large text-[18px] text-white ml-4"
+                        mat-button
+                        (click)="goTo(header.link)"
+                    >
+                        {{header.title}}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</mat-toolbar>
+<main class="w-full">
+    <section class=" h-fit">
+        <div class="flex flex-col items-center justify-center" style="background-image: url('assets/images/ui/img-banner.jpeg'); background-size: cover">
+<!--            <img src="assets/images/ui/img-banner.jpeg" class="absolute" style="z-index: -1" alt="dcc" />-->
+            <div class="container text-white pl-10 flex flex-col items-center justify-center py-15 h-[100vh]">
+                    <h1 class="text-[60px] font-bold">
+                        Dịch Vụ Proxy
+                        Chất Lượng Cao</h1>
+                <h3 class="text-[18px] font-medium">Cung cấp giải pháp proxy chuyên nghiệp cho cá nhân, doanh nghiệp giá cực rẻ.</h3>
+                   <div class="flex mt-15">
+                       <button mat-stroked-button class="mr-6 text-[40px] px-16 py-8 text-white">
+                           Bảng Giá
+                       </button>
+                       <button mat-flat-button class="text-[40px] bg-primary-800 px-16 py-8 bg-white text-[#d422c4]">Mua ngay</button>
+                   </div>
+            </div>
+<!--            <div class="row font-semi-bold text-[20px] flex justify-between">-->
+<!--                <div class="flex">-->
+<!--                    <mat-icon class="mr-2 font-[20px]" svgIcon="heroicons_outline:user"></mat-icon>-->
+<!--                    <div>-->
+<!--                        <div>1.200+</div>-->
+<!--                        <div>Khách hàng trên toàn thế giới</div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="flex items-center">-->
+<!--                    <mat-icon class="mr-2" svgIcon="heroicons_outline:user"></mat-icon>-->
+<!--                    <div>-->
+<!--                        <div>1.200+</div>-->
+<!--                        <div>Khách hàng trên toàn thế giới</div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="flex">-->
+<!--                    <mat-icon class="mr-2" svgIcon="heroicons_outline:user"></mat-icon>-->
+<!--                    <div>-->
+<!--                        <div>1.200+</div>-->
+<!--                        <div>Khách hàng trên toàn thế giới</div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="flex">-->
+<!--                    <mat-icon class="mr-2" svgIcon="heroicons_outline:user"></mat-icon>-->
+<!--                    <div>-->
+<!--                        <div>1.200+</div>-->
+<!--                        <div>Khách hàng trên toàn thế giới</div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+        </div>
+    </section>
+
+    <section class="mt-10 container mx-auto">
+        <h1 class="text-[40px] font-bold text-center">
+            Proxy của chúng tôi hoạt động như thế nào?
+        </h1>
+        <h3 class="mt-3 sm:text-2xl text-center tracking-tight text-secondary">Cung cấp cho bạn một giải pháp Ipv4 và IPv6 tại quốc gia mà bạn cần với chi phí tối ưu và trải nghiệm dịch vụ tốt nhất</h3>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
+            <fuse-card
+                class="flex flex-col mx-4"
+                #fuseCard
+                [flippable]="false"
+                *ngFor="let item of howToWorks;let i=index"
+            >
+                <!-- Front -->
+                <ng-container>
+                    <div class="flex flex-col px-8 py-6 pb-6">
+                        <img class="w-[62px] h-[60px] mb-2" [src]="'assets/images/ui/' + item.icon" [alt]="item.icon"/>
+                        <div class="text-lg font-bold">{{ item.title }}</div>
+                        <div class="mt-2">
+                            {{ item.desc }}
+                        </div>
+                    </div>
+                </ng-container>
+            </fuse-card>
+        </div>
+    </section>
+
+    <section class="mt-10">
+        <app-pricing></app-pricing>
+    </section>
+
+    <section class="mt-10 flex justify-center">
+        <div class="container flex flex-col justify-center">
+            <h1 class="text-[40px] font-bold text-center">Phạm vi địa lý về các địa điểm đặt máy chủ proxy của chúng tôi</h1>
+            <h3 class="mt-3 sm:text-2xl text-center tracking-tight text-secondary mb-10">Cam kết cung cấp cho bạn một giải pháp Ipv4 và IPv6 tại quốc gia mà bạn cần với chi phí tối ưu và trải nghiệm dịch vụ tốt nhất</h3>
+
+            <div>
+                <img class="w-full" alt="map" src="assets/images/ui/img_map.png">
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-10">
+                <div *ngFor="let country of countries" class="flex items-center min-w-[350px] lg:pl-8">
+                    <img class="w-[50px] h-[50px] mr-3" [src]="'assets/images/flags/'+country.flag" [alt]="country.name"/>
+                    <div>
+                        <div class="size-[18px] font-bold">{{country.name}}</div>
+                        <div>{{country.count}} IPS</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mt-[100px] flex justify-center">
+        <div class="container flex flex-col justify-center">
+            <h1 class="text-[40px] font-bold text-center mb-10">Khách hàng của chúng tôi nói gì</h1>
+            <div class="flex justify-between">
+                <fuse-card
+                    class="flex flex-col mx-4 min-h-[140px] w-[25%]"
+                    #fuseCard
+                    [flippable]="false"
+                    *ngFor="let item of clientReviews;let i=index"
+                >
+                    <!-- Front -->
+                    <div class="flex p-4">
+                        <div class="min-w-[80px]">
+                            <img
+                            class="w-[80px] h-[80px] rounded-full object-cover"
+                            [src]="item.avatar"
+                            [alt]="'Profile avatar'"></div>
+                        <div class="ml-4 font-semi">
+                            {{item.comment}}
+                        </div>
+                    </div>
+
+                </fuse-card>
+            </div>
+
+        </div>
+    </section>
+
+<!--    <section>-->
+<!--        <div class="container flex flex-col justify-center">-->
+<!--            <h1 class="text-[40px] font-bold text-center mb-10">Câu hỏi thường gặp</h1>-->
+<!--            <mat-accordion class="max-w-4xl mt-8">-->
+<!--                <ng-container *ngFor="let question of questions; trackBy: trackByFn">-->
+<!--                    <mat-expansion-panel>-->
+<!--                        <mat-expansion-panel-header [collapsedHeight]="'56px'">-->
+<!--                            <mat-panel-title class="font-medium leading-tight">{{question.title}}</mat-panel-title>-->
+<!--                        </mat-expansion-panel-header>-->
+<!--                        {{question.answer}}-->
+<!--                    </mat-expansion-panel>-->
+<!--                </ng-container>-->
+<!--            </mat-accordion>-->
+<!--        </div>-->
+<!--    </section>-->
+    <footer class="mt-10 mb-4">
+        <div class="text-center">Sản phẩm của team ......... </div>
+    </footer>
+</main>
+<!-- <div class="flex flex-col items-center justify-center w-full h-full">
+    <div class="w-full max-w-3xl">
+        <div class="max-w-none mx-auto prose prose-sm">
+            <img
+                class="w-20"
+                src="assets/images/logo/logo.svg"
+                alt="Logo image">
+            <h1>Landing Module</h1>
+            <p>
+                This can be the landing or the welcome page of your application. If you have an SSR (Server Side Rendering) setup, or if you don't need to have Search engine
+                visibility and optimizations, you can even use this page as your primary landing page.
+            </p>
+            <p>
+                This is a separate "module", it has its own directory and routing setup and also it's completely separated from the actual application. This is also a simple example of
+                a multiple applications setup that uses the same codebase. You can have different entry points and essentially have different applications within the same codebase.
+            </p>
+        </div>
+        <div>
+            <a
+                class="mt-8"
+                mat-flat-button
+                [color]="'primary'"
+                [routerLink]="'/dashboards/project'">
+                <span>Launch the App</span>
+                <mat-icon
+                    class="ml-2 icon-size-5"
+                    [svgIcon]="'heroicons_solid:arrow-narrow-right'"></mat-icon>
+            </a>
+        </div>
+    </div>
+</div> -->

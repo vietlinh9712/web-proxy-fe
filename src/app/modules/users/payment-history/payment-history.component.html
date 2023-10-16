@@ -1,0 +1,48 @@
+
+<app-core-table
+  class="mb-10 w-full"
+  [config]="tableConfig"
+  [dataSource]="data"
+  [displayedColumns]="displayedColumns"
+  [rowTemplate]="rowTemplate"
+  matSort
+>
+  <!-- Position Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Tên gói </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="createdTime">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Thời gian </th>
+    <td mat-cell *matCellDef="let element"> {{element.createdTime}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="amount">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Số lượng </th>
+    <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="status">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Trạng thái </th>
+    <td mat-cell *matCellDef="let element">
+    <span [class]="{
+      'text-green': element.status === 'success',
+       'text-secondary': element.status === 'pending',
+       'text-red': element.status === 'failed'
+        }">      {{element.status}}</span>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="details">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
+    <td mat-cell *matCellDef="let element"> <button mat-button mat-flat-button color="primary" (click)="openDetail(element)">Chi tiết</button> </td>
+  </ng-container>
+</app-core-table>
+<ng-template #rowTemplate>
+  <div>
+    <h1>CONTENT</h1>
+  </div>
+</ng-template>
