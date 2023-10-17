@@ -16,16 +16,9 @@ export class BaseUrlInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let newReq = request;
-    if(request.method === 'GET') {
       newReq = newReq.clone({
         params:  new HttpParams().set('ctx.access_token', this.authService.accessToken)
       });
-    } else {
-      newReq.body.ctx = {
-        access_token: this.authService.accessToken
-      };
-    }
-
     const apiReq = URL_BE.some(url => newReq.url.includes(url)) ? newReq.clone({ url: `${this.baseUrl}/${newReq.url}` }) : newReq;
     return next.handle(apiReq);
   }

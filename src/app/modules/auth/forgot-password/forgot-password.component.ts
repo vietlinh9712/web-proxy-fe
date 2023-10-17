@@ -77,7 +77,7 @@ export class AuthForgotPasswordComponent implements OnInit
                     this.forgotPasswordForm.enable();
 
                     // Reset the form
-                    this.forgotPasswordNgForm.resetForm();
+                    this.forgotPasswordNgForm.reset();
 
                     // Show the alert
                     this.showAlert = true;

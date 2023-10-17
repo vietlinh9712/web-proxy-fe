@@ -10,7 +10,7 @@
       </div>
     </div>
 
-    <div class="overflow-x-auto mx-10">
+    <div class="overflow-x-auto mx-10 mb-10">
       <table
         class="w-full bg-transparent"
         mat-table
@@ -33,7 +33,7 @@
         <tr mat-row class="element-row"
             *matRowDef="let element; columns: displayedColumns;"></tr>
       </table>
-      <mat-paginator [pageSizeOptions]="[5, 30, 40]" showFirstLastButtons></mat-paginator>
+<!--      <mat-paginator  [pageSizeOptions]="[5, 30, 40]" showFirstLastButtons></mat-paginator>-->
 
     </div>
   </div>

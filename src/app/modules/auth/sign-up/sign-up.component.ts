@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseAlertType } from '@fuse/components/alert';
 import { AuthService } from 'app/core/auth/auth.service';
-import {FuseValidators} from "../../../../@fuse/validators";
-import {map} from "rxjs";
+import {FuseValidators} from '@fuse/validators';
+import {map} from 'rxjs';
 
 @Component({
     selector     : 'auth-sign-up',
@@ -49,7 +49,7 @@ export class AuthSignUpComponent implements OnInit
                 email     : ['', [Validators.required, Validators.email]],
                 password  : ['', [Validators.required, Validators.minLength(6)]],
                 confirmPassword : ['', Validators.required],
-                agreements: ['', Validators.requiredTrue]
+                agreements: [true, Validators.requiredTrue]
             }, {
             validators: FuseValidators.mustMatch('password', 'confirmPassword')
           }
@@ -102,7 +102,7 @@ export class AuthSignUpComponent implements OnInit
                     this.signUpForm.enable();
 
                     // Reset the form
-                    this.signUpNgForm.resetForm();
+                    this.signUpNgForm.reset();
 
                     // Set the alert
                     this.alert = {

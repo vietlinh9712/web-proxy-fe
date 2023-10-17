@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {CoreTableConfig} from "../../interfaces/common";
+import {CommonService} from "../../../core/services/common.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -43,110 +44,36 @@ export class DashboardComponent implements OnInit {
     }
   ];
 
-  data = [
-    {
-      username: 'viet****',
-      content: 'Tài khoản *** vừa mua gói proxy cơ bản với giá 15000đ',
-      amount: '15000đ'
-    },
-    {
-      username: 'viet****',
-      content: 'Tài khoản *** vừa mua gói proxy cơ bản với giá 15000đ',
-      amount: '15000đ'
-    },
-    {
-      username: 'viet****',
-      content: 'Tài khoản *** vừa mua gói proxy cơ bản với giá 15000đ',
-      amount: '15000đ'
-    },
-    {
-      username: 'viet****',
-      content: 'Tài khoản *** vừa mua gói proxy cơ bản với giá 15000đ',
-      amount: '15000đ'
-    },
-    {
-      username: 'viet****',
-      content: 'Tài khoản *** vừa mua gói proxy cơ bản với giá 15000đ',
-      amount: '15000đ'
-    },
-    {
-      username: 'viet****',
-      content: 'Tài khoản *** vừa mua gói proxy cơ bản với giá 15000đ',
-      amount: '15000đ'
-    },
-    {
-      username: 'viet****',
-      content: 'Tài khoản *** vừa mua gói proxy cơ bản với giá 15000đ',
-      amount: '15000đ'
-    },
-    {
-      username: 'viet****',
-      content: 'Tài khoản *** vừa mua gói proxy cơ bản với giá 15000đ',
-      amount: '15000đ'
-    },
-    {
-      username: 'viet****',
-      content: 'Tài khoản *** vừa mua gói proxy cơ bản với giá 15000đ',
-      amount: '15000đ'
-    },
-    {
-      username: 'viet****',
-      content: 'Tài khoản *** vừa mua gói proxy cơ bản với giá 15000đ',
-      amount: '15000đ'
-    },
-    {
-      username: 'viet****',
-      content: 'Tài khoản *** vừa mua gói proxy cơ bản với giá 15000đ',
-      amount: '15000đ'
-    },
-    {
-      username: 'viet****',
-      content: 'Tài khoản *** vừa mua gói proxy cơ bản với giá 15000đ',
-      amount: '15000đ'
-    },
-    {
-      username: 'viet****',
-      content: 'Tài khoản *** vừa mua gói proxy cơ bản với giá 15000đ',
-      amount: '15000đ'
-    },
-    {
-      username: 'viet****',
-      content: 'Tài khoản *** vừa mua gói proxy cơ bản với giá 15000đ',
-      amount: '15000đ'
-    },
-    {
-      username: 'viet****',
-      content: 'Tài khoản *** vừa mua gói proxy cơ bản với giá 15000đ',
-      amount: '15000đ'
-    },
-    {
-      username: 'viet****',
-      content: 'Tài khoản *** vừa mua gói proxy cơ bản với giá 15000đ',
-      amount: '15000đ'
-    },
-    {
-      username: 'viet****',
-      content: 'Tài khoản *** vừa mua gói proxy cơ bản với giá 15000đ',
-      amount: '15000đ'
-    },
-    {
-      username: 'viet****',
-      content: 'Tài khoản *** vừa mua gói proxy cơ bản với giá 15000đ',
-      amount: '15000đ'
-    },
-  ];
+  data = [];
 
   tableConfig: CoreTableConfig = {
     name: 'Thông báo',
     subtitle: 'Cập nhật thông báo trong thời gian thực'
   };
 
-  displayedColumns: string[] = ['username', 'content', 'amount'];
+  displayedColumns: string[] = ['username', 'content', 'amount', 'createdTime'];
 
-  constructor() { }
+  constructor(
+    private commonService: CommonService
+  ) { }
 
   ngOnInit(): void {
     setTimeout((() => this.data = [...this.data]), 1000);
+    this.commonService.messages.subscribe((data: any) => {
+      console.log(data);
+      if(data.data) {
+        const newElement = [{
+          username: data.data.user.email.substring(0,3).concat('******'),
+          content: `Taì khoản ${data.data.user.email.substring(0,3).concat('******')} đã mua gói proxy`,
+          amount: data.data.total_amount + 'đ',
+          createdTime: data.data.created_time * 1000
+        }];
+        if(this.data.length > 10) {
+          this.data.pop();
+        }
+        this.data = newElement.concat(this.data);
+      }
+    });
   }
 
 }
